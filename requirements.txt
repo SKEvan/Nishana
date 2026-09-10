@@ -1,0 +1,24 @@
+# ArtilleryProject -- single requirements file for both
+# ArtilleryProject_Frontend and ArtilleryProject_Backend.
+#
+# Install once, into one virtual environment, and both the GUI and the
+# backend daemon are ready to run:
+#
+#   pip install -r requirements.txt
+
+# --- Frontend (PySide6 GUI) ---
+PySide6>=6.5.0
+
+# --- Backend sensor drivers ---
+pyserial>=3.5      # laser rangefinder (sensors/lrf_reader.py)
+smbus2>=0.4        # compass / CMPS12 over I2C (sensors/compass_reader.py)
+
+# --- NOT pip-installable -- install via apt on the Raspberry Pi ---
+# The GPS reader (sensors/gps_reader.py) imports `gps` from gpsd's own
+# Python client, which only ships as a system package:
+#
+#   sudo apt install gpsd gpsd-clients python3-gps
+#
+# If you're using a virtualenv, either create it with --system-site-packages
+# so it can see python3-gps, or add a .pth file pointing at
+# /usr/lib/python3/dist-packages inside the venv's site-packages directory.
